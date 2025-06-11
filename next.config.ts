@@ -1,7 +1,13 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const nextConfig = {
+  output: 'export',
+  assetPrefix: isProd ? '/fifa' : '',
+  images: {
+    unoptimized: true // Optional if using next/image
+  }
 };
 
-export default nextConfig;
+module.exports = nextConfig;
+

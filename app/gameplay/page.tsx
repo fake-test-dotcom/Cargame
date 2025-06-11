@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState, Suspense } from "react";
 import dynamic from "next/dynamic";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF, useProgress } from "@react-three/drei";
 import * as THREE from 'three';
 

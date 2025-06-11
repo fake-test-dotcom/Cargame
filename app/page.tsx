@@ -5,19 +5,17 @@ import Head from 'next/head';
 
 export default function Home() {
   const [showModal, setShowModal] = useState(true);
-  const audioRef = useRef<HTMLAudioElement>(null); // ✅ Typed properly
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleStart = () => {
     setShowModal(false);
     if (audioRef.current) {
       audioRef.current.play().catch(() => {
-        // Some browsers block autoplay
         console.warn('Autoplay failed');
       });
     }
   };
 
-  // Prevent autoplay issues when modal disappears
   useEffect(() => {
     if (!showModal && audioRef.current) {
       audioRef.current.play().catch(() => {
@@ -30,61 +28,53 @@ export default function Home() {
     <>
       <Head>
         <title>Car Game UI</title>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap"
-          rel="stylesheet"
-        />
       </Head>
 
-      {/* ✅ Audio Ref */}
       <audio ref={audioRef} src="/audio/Styles of Beyond.mp3" loop preload="auto" />
 
-      {/* Modal */}
       {showModal && (
         <div className="modal">
           <div className="modal-content">
             <h1>Ready to Race?</h1>
-            <button style={{borderRadius:'30px'}} onClick={handleStart} className="start-button">
+            <button style={{ borderRadius: '30px' }} onClick={handleStart} className="start-button">
               Start Game
             </button>
           </div>
         </div>
       )}
 
-      {/* Main UI */}
       {!showModal && (
         <div className="main">
-  <div className="card">
-    <h1 className="title">🏁 Black Street X</h1>
-    <div className="menu">
-      <Link href="/gameplay">
-        <button className="btn">Career Mode</button>
-      </Link>
-      <Link href="/">
-        <button className="btn">Multiplayer</button>
-      </Link>
-      <Link href="/">
-        <button className="btn">Settings</button>
-      </Link>
-    </div>
-  </div>
-</div>
+          <div className="card">
+            <h1 className="title">🏁 Black Street X</h1>
+            <div className="menu">
+              <Link href="/gameplay">
+                <button className="btn">Career Mode</button>
+              </Link>
+              <Link href="/">
+                <button className="btn">Multiplayer</button>
+              </Link>
+              <Link href="/">
+                <button className="btn">Settings</button>
+              </Link>
+            </div>
+          </div>
+        </div>
       )}
 
-      {/* Global Styles */}
       <style jsx global>{`
         body,
         html {
           margin: 0;
           padding: 0;
-          font-family: 'Orbitron', sans-serif;
+          font-family: system-ui, sans-serif;
+          font-weight: 600;
           background: url('/images/front page car.jpg');
           background-size: cover;
           overflow: hidden;
         }
       `}</style>
 
-      {/* Component Styles */}
       <style jsx>{`
         .modal {
           position: fixed;
@@ -108,6 +98,7 @@ export default function Home() {
           color: white;
           backdrop-filter: blur(12px);
           box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+          font-weight: 600;
         }
 
         .start-button {
@@ -120,6 +111,7 @@ export default function Home() {
           border-radius: 8px;
           cursor: pointer;
           transition: background 0.3s ease;
+          font-weight: 600;
         }
 
         .start-button:hover {
@@ -148,6 +140,7 @@ export default function Home() {
           font-size: 3rem;
           margin-bottom: 40px;
           color: #ffffff;
+          font-weight: 700;
         }
 
         .menu {
@@ -155,7 +148,6 @@ export default function Home() {
           flex-direction: column;
           gap: 20px;
           border-radius: 30px;
-
         }
 
         .btn {
@@ -168,6 +160,7 @@ export default function Home() {
           cursor: pointer;
           transition: all 0.3s ease-in-out;
           width: 400px;
+          font-weight: 600;
         }
 
         .btn:hover {

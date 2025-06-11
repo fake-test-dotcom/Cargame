@@ -1,4 +1,5 @@
 {
+  "homepage": "https://fake-test-dotcom.github.io/Cargame",
   "name": "open-world-cargame",
   "version": "0.1.0",
   "private": true,
@@ -6,6 +7,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out",
     "lint": "next lint"
   },
   "dependencies": {
@@ -24,6 +27,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
+    "gh-pages": "^6.3.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
